@@ -44,7 +44,7 @@ int init_opengl(HDC hdc)
 
     float before = GetWallClockSeconds();
 
-    glCompileShader(vshader);    //   <---- problem here
+    glCompileShader(vshader);    //   <---- problem not here anymore?
 
     float after = GetWallClockSeconds();
 
@@ -86,6 +86,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     init_opengl(hdc);
 
+    SwapBuffers(hdc);
 
     while(running)
     {
@@ -95,6 +96,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
+        SwapBuffers(hdc);
         Sleep(16);
     }
     return 0;
