@@ -44,8 +44,11 @@ int init_opengl(HDC hdc)
 
     float before = GetWallClockSeconds();
 
-    glCompileShader(vshader);    //   <---- problem not here anymore?
+    glCompileShader(vshader);
 
+    SwapBuffers(hdc);
+    SwapBuffers(hdc);  // now we need to swap buffers not once but twice to capture the slowdown
+	
     float after = GetWallClockSeconds();
 
     char displaybuf[256];
@@ -86,7 +89,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     init_opengl(hdc);
 
-    SwapBuffers(hdc);
 
     while(running)
     {
@@ -96,7 +98,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
-        SwapBuffers(hdc);
         Sleep(16);
     }
     return 0;
