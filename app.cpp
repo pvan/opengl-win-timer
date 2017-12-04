@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <gl\gl.h>
 #include "glext.h"
-#include "wglext.h"
 
 float GetWallClockSeconds()
 {
